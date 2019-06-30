@@ -29,20 +29,22 @@ trajeto    = 'BSB-CGH'
 stops      = '0'
 
 # Configurações de viagens de um final de semana:
-saida_qui   = {'idia':3, 'hmin':'1900', 'hmax':'2130'}
-saida_sex   = {'idia':4, 'hmin':'1900', 'hmax':'2130'}
-saida_sexE  = {'idia':4, 'hmin':'1730', 'hmax':'2130'}
-chegada_seg = {'idia':0, 'hmin':'0900', 'hmax':'1200'}
+# (idia: = day of the week; hmin = earliest flight time; hmax = latest flight time)
+# Time format: %H%M
+# Days #: 0 = Monday, 1 = Tuesday, ...
+saida_qui   = {'idia':3, 'hmin':'1730', 'hmax':'2130'}
+saida_sex   = {'idia':4, 'hmin':'1730', 'hmax':'2130'}
+chegada_seg = {'idia':0, 'hmin':'0830', 'hmax':'1100'}
 chegada_dom = {'idia':6, 'hmin':'1800', 'hmax':'2100'}
 # Configurações de viagens de uma semana:
-saida_seg   = {'idia':0, 'hmin':'2030', 'hmax':'2130'}
-saida_ter   = {'idia':1, 'hmin':'0900', 'hmax':'1400'}
+chegada_qui = {'idia':3, 'hmin':'0830', 'hmax':'1130'}
+chegada_qua = {'idia':2, 'hmin':'1730', 'hmax':'2130'}
+
 
 # Tipos de viagens:
-extend       = {'saidas':[saida_qui, saida_sexE], 'chegadas':[chegada_seg, chegada_dom]}
-findi        = {'saidas':[saida_sex], 'chegadas':[chegada_seg, chegada_dom]}
-semana       = {'saidas':[saida_seg, saida_ter], 'chegadas':[chegada_seg, chegada_dom]}
-menu_viagens = {'findi':findi, 'semana':semana, 'extend':extend} 
+findi        = {'saidas':[saida_qui, saida_sex], 'chegadas':[chegada_dom, chegada_seg]}
+semana       = {'saidas':[saida_qui, saida_sex], 'chegadas':[chegada_qua, chegada_qui]}
+menu_viagens = {'findi':findi, 'semana':semana} 
 
 
 ###############
@@ -103,5 +105,6 @@ for i in range(n_semanas):
             #print 'ida:', data_ida, ' volta:', data_volta
             # Busca por vôos:
             url = kayak_link(trajeto, data_ida, saida['hmin'], saida['hmax'], data_volta, chegada['hmin'], chegada['hmax'], stops)
+            #print(url)
             subprocess.call([navegador, instance, url])
             #time.sleep(1)
