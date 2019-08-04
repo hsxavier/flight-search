@@ -54,7 +54,7 @@ menu_viagens = {'findi':findi, 'semana':semana}
 # Link para o kayak:
 def kayak_link(trajeto, ida_data, ida_hmin, ida_hmax, volta_data, volta_hmin, volta_hmax, stops):
     url = 'https://www.kayak.com.br/flights/'+trajeto+\
-          '/'+ida_data+'/'+volta_data+'?sort=price_a&fs=takeoff='+ida_hmin+','+ida_hmax+'|'+volta_hmin+','+volta_hmax+';stops='+stops+';providers=-SKYTOURS'
+          '/'+ida_data+'/'+volta_data+'?sort=price_a&fs=takeoff='+ida_hmin+','+ida_hmax+'_'+volta_hmin+','+volta_hmax+';stops='+stops+';providers=-SKYTOURS'
     return url
 
 # Retorna a data do próximo dia da semana (2a=0, 3a=1, 4a=2, 5a=3, 6a=4, Sáb=5, Dom=6)
